@@ -1,21 +1,49 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fake Review Detection</title>
+<title>AI Fake Review Detection</title>
 </head>
-<body style="text-align:center; margin-top:50px;">
 
-    <h2>Fake Review Detection</h2>
+<body style="text-align:center; font-family:Arial">
 
-    <form action="/predict" method="post">
-        <textarea name="review" rows="4" cols="50" placeholder="Enter review"></textarea><br><br>
-        <button type="submit">Check</button>
-    </form>
+<h2>AI Fake Review Detection</h2>
 
-    {% if prediction_text %}
-        <h3 style="color: {{color}};">{{ prediction_text }}</h3>
-        <p>Confidence: {{ confidence }}</p>
-    {% endif %}
+<form action="/predict" method="post">
+<textarea name="review" placeholder="Enter review"></textarea><br><br>
+<button type="submit">Check</button>
+</form>
+
+{% if prediction_text %}
+<h3 style="color:{{color}}">{{prediction_text}}</h3>
+<p>Confidence: {{confidence}}</p>
+{% endif %}
+
+<h3>Accuracy: {{accuracy}}%</h3>
+
+<h3>📊 Graph</h3>
+<img src="/static/graph.png" width="300">
+
+<h3>☁️ Word Cloud</h3>
+<img src="/static/wordcloud.png" width="300">
+
+<h3>📁 Upload CSV</h3>
+<form action="/upload" method="post" enctype="multipart/form-data">
+<input type="file" name="file">
+<button type="submit">Upload</button>
+</form>
+
+{% if download %}
+<a href="/static/output.csv">Download Results</a>
+{% endif %}
+
+<h3>🧾 Recent Reviews</h3>
+<ul>
+{% for r in history %}
+<li>{{r}}</li>
+{% endfor %}
+</ul>
 
 </body>
 </html>
+
