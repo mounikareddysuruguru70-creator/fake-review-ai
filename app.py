@@ -27,6 +27,7 @@ data = {
 
 df = pd.DataFrame(data)
 
+# Cleaning
 def clean_text(text):
     text = text.lower()
     text = re.sub(r'[^a-zA-Z\s]', '', text)
@@ -34,10 +35,12 @@ def clean_text(text):
 
 df['cleaned'] = df['review'].apply(clean_text)
 
+# Vectorization
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df['cleaned'])
 y = df['label']
 
+# Model
 model = LogisticRegression()
 model.fit(X, y)
 
@@ -78,5 +81,5 @@ def predict():
         return str(e)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
