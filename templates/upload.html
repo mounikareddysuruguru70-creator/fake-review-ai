@@ -1,31 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fake Review Detector</title>
+    <title>Upload CSV - Fake Review Detector</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body { font-family: Arial, sans-serif; background: #f7f7f7; text-align: center; padding: 50px; }
         h1 { color: #333; }
         form { background: #fff; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-top: 20px; }
-        input[type="text"] { width: 400px; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        input[type="file"] { margin: 10px 0; }
         button { padding: 10px 20px; background: #ff6600; border: none; border-radius: 5px; color: white; font-weight: bold; cursor: pointer; }
         button:hover { background: #e65c00; }
-        nav { margin-top: 20px; }
+        nav { margin-top: 30px; }
         nav a { margin: 0 15px; text-decoration: none; color: #ff6600; font-weight: bold; }
         nav a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <h1>Fake Review Detection System</h1>
-    <form action="/" method="POST">
-        <input type="text" name="review" placeholder="Enter your review here" required><br>
-        <button type="submit">Check Review</button>
+    <h1>Upload CSV of Reviews</h1>
+    <form action="{{ url_for('upload_csv') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required><br>
+        <button type="submit">Upload & Analyze</button>
     </form>
     <nav>
+        <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('history') }}">Review History</a>
-        <a href="{{ url_for('upload_csv') }}">Upload CSV</a>
         <a href="{{ url_for('predict') }}">Graphs & Word Cloud</a>
     </nav>
 </body>

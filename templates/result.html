@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; text-align: center; padding: 50px; }
+        h1, h2 { color: #333; }
+        .card { background: #fff; display: inline-block; padding: 20px; margin-top: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .info { margin: 10px 0; font-size: 18px; }
+        img { max-width: 80%; margin-top: 20px; border-radius: 10px; }
+        nav { margin-top: 30px; }
+        nav a { margin: 0 15px; text-decoration: none; color: #ff6600; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Fake Review Detection Result</h1>
+
+    <div class="card">
+        <h2>Model Accuracy:</h2>
+        <p class="info">{{ model_accuracy }}%</p>
+
+        <h2>Review Text:</h2>
+        <p class="info">{{ review }}</p>
+
+        <h2>Prediction:</h2>
+        <p class="info"><strong>{{ prediction }}</strong></p>
+
+        <h2>Confidence:</h2>
+        <p class="info">{{ confidence }}%</p>
+
+        <h2>Sentiment:</h2>
+        <p class="info">{{ sentiment }}</p>
+    </div>
+
+    <h2>Word Cloud</h2>
+    <img src="{{ url_for('static', filename='wordcloud.png') }}" alt="Word Cloud">
+
+    <h2>Review Count Graph</h2>
+    <img src="{{ url_for('static', filename='graph.png') }}" alt="Graph">
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('history') }}">Review History</a>
+        <a href="{{ url_for('upload_csv') }}">Upload CSV</a>
+    </nav>
+</body>
+</html>

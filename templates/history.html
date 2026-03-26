@@ -1,0 +1,45 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 50px; text-align: center; }
+        h1 { color: #333; }
+        table { margin: 20px auto; border-collapse: collapse; width: 90%; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; }
+        th { background: #ff6600; color: white; }
+        tr:hover { background: #f1f1f1; }
+        nav { margin-top: 30px; }
+        nav a { margin: 0 15px; text-decoration: none; color: #ff6600; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Review History</h1>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Review</th>
+            <th>Prediction</th>
+            <th>Confidence %</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for r in reviews %}
+        <tr>
+            <td>{{ r.time if r.time else '-' }}</td>
+            <td>{{ r.review }}</td>
+            <td>{{ r.prediction }}</td>
+            <td>{{ r.confidence if r.confidence else '-' }}</td>
+            <td>{{ r.sentiment if r.sentiment else '-' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('upload_csv') }}">Upload CSV</a>
+        <a href="{{ url_for('predict') }}">Graphs & Word Cloud</a>
+    </nav>
+</body>
+</html>
